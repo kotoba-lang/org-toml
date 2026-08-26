@@ -1,0 +1,21 @@
+#!/usr/bin/env nbb
+;; Run the suite on the ClojureScript side.
+;;
+;; Not a formality: `\u`-escape decoding is `Character/toChars` on one runtime
+;; and `String.fromCodePoint` on the other, `control-char?` reads a code point
+;; through `int` on one and `charCodeAt` on the other, and integer parsing by
+;; radix is `Long/parseLong` versus `js/parseInt`.
+;;
+;;   nbb --classpath "$(clojure -A:cljs -Spath)" scripts/verify-cljs.cljs
+(ns verify-cljs
+  (:require [clojure.test :as t]
+            [toml.reader-test]))
+
+(defmethod t/report [:cljs.test/default :end-run-tests] [m]
+  (println)
+  (if (t/successful? m)
+    (println "all checks passed on the ClojureScript path")
+    (do (println "FAILED on the ClojureScript path")
+        (js/process.exit 1))))
+
+(t/run-tests 'toml.reader-test)
