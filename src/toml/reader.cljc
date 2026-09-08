@@ -37,7 +37,7 @@
   `{:status :error :reason kw :line n :column n}`. The reason keywords are
   contract."
   (:refer-clojure :exclude [read])
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── scanner state ────────────────────────────────────────────────────────────
 ;; A map {:s text :i index}. Every reader takes and returns one, or an error.
