@@ -56,8 +56,8 @@ the reader against its own writer.
 ## Verify
 
 ```sh
-clojure -M:test                                                        # JVM
-nbb --classpath "$(clojure -A:cljs -Spath)" scripts/verify-cljs.cljk   # ClojureScript
+kbb -M:test                                                        # JVM
+kbb --backend sci --classpath "$(kbb -A:cljs -Spath)" scripts/verify-cljs.cljk   # ClojureScript
 ```
 
 The document in the suite is **toml.io's own example** verbatim, plus every
