@@ -1,5 +1,5 @@
 (ns toml.reader-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [toml.reader :as toml]))
 
 (defn- r [s] (toml/read! s))
